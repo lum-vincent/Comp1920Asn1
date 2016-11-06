@@ -13,7 +13,7 @@ define('BOOK_FILE_PUBLISHED_DATE_BEFORE_BIRTH_DATE_ERROR_FILE','./published_befo
 define('SPECIAL_BOOK_PREG_MATCH','/[0-9]{4}-[0-9]{2}-[0-9]{2}/');
 
 define('INDEX_LINK','./index.php');
-define('ANALYTICS_LINK','');
+define('ANALYTICS_LINK','./analytics.php');
 define('LOGOUT_LINK','./logout.php');
 
 $booksContents = array( 

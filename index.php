@@ -19,7 +19,7 @@ define('LOGGED_IN_REMEMBER_ME_COOKIE_DURATION',20*60);
 define('LOGGED_IN_TIMESTAMP_COOKIE_NAME','loggedintime');
 
 define('BROWSE_BOOKS_LINK','./browse.php');
-define('ANALYTICS_LINK','');
+define('ANALYTICS_LINK','./analytics.php');
 define('LOGOUT_LINK','./logout.php');
 
 function getPost($String) {
