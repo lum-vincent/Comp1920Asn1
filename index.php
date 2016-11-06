@@ -1,7 +1,18 @@
+<!DOCTYPE HTML>
 <html>
 	<head></head>
 	<body>
 <?php
+
+/**
+	* Assignment 1
+	*
+	* This file handles user authentication and acts as a welcome screen
+	*
+	* @author Vincent Lum
+	* @date 2016-11-06
+	* @version 1.0
+	*/
 
 define('PASSWORD_FILE_PATH','./passwords.txt');
 define('PASSWORD_FILE_DELIMITER',',');
