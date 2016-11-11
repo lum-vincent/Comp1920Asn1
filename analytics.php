@@ -1,8 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-<head></head>
-<body>
-
 <?php
 
 /**
@@ -155,6 +150,3 @@ ECHO "
 
 
 }?>
-
-</body>
-</html>

@@ -1,8 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-<head></head>
-<body>
-
 <?php
 
 /**
@@ -103,6 +98,3 @@ if( !isset($_COOKIE[LOGGED_IN_COOKIE_NAME]) || !isset($_COOKIE[LOGGED_IN_TIMESTA
 	";
 
 }?>
-
-</body>
-</html>

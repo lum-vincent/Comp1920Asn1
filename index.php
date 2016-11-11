@@ -1,7 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-	<head></head>
-	<body>
 <?php
 
 /**
@@ -122,7 +118,3 @@ if( !isset($_COOKIE[LOGGED_IN_TIMESTAMP_COOKIE_NAME]) ) { //There is no timestam
 }
 
 ?>
-
-
-	</body>
-</html>
