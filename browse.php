@@ -8,7 +8,8 @@
 /**
 	* Assignment 1
 	*
-	* This file handles user authentication and acts as a welcome screen
+	* This file handles parsing through a book inventory, displaying basic
+	* information about the book inventory.
 	*
 	* @author Vincent Lum
 	* @date 2016-11-06
@@ -41,7 +42,7 @@ $booksContents = array(
 		('<strong>Birth Year</strong>')
 	)
 );
-
+//If there isn't a cookie for both username and timestamp, reroute to index.php
 if( !isset($_COOKIE[LOGGED_IN_COOKIE_NAME]) || !isset($_COOKIE[LOGGED_IN_TIMESTAMP_COOKIE_NAME]) ){
 	header('Location: ./index.php');
 } else {
@@ -50,19 +51,19 @@ if( !isset($_COOKIE[LOGGED_IN_COOKIE_NAME]) || !isset($_COOKIE[LOGGED_IN_TIMESTA
     $tempBook = [];
 
 		foreach(BOOK_FILE_ELEMENTS_DELIMITER as $delimiter)	{
-			$count = 0;
+			$count = 0; //Use this to make sure while loop doesn't go forever
 			$element = '';
 			do {
 				$nextWord = array_shift($bookFileElements);	
 				if($nextWord == $delimiter)
 					break;
 				$element .= $nextWord . ' ';
-				$count += 1;
+				$count += 1; 
 			} while($count < 100 && !empty($bookFileElements));
 			$tempBook[] = trim($element);
 		}
 		$tempBook[] = trim(array_shift($bookFileElements) . ' '); //add last eleement
-		$book = array( //reconstruct array
+		$book = array( //reconstruct array to match table output
 			$tempBook[0],
 			$tempBook[2],
 			preg_split('/ /',$tempBook[1])[1],
@@ -82,7 +83,7 @@ if( !isset($_COOKIE[LOGGED_IN_COOKIE_NAME]) || !isset($_COOKIE[LOGGED_IN_TIMESTA
 		}
 	}
 
-
+//Construct a table to display the contents of the book inventory
 	ECHO '<table>'; //Start table
 		foreach($booksContents as $line) {
 			ECHO '<tr>'; //Start next row

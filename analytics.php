@@ -8,7 +8,7 @@
 /**
 	* Assignment 1
 	*
-	* This file handles user authentication and acts as a welcome screen
+	* This file analyzes the book inventory.
 	*
 	* @author Vincent Lum
 	* @date 2016-11-06
@@ -20,8 +20,9 @@ define('LOGGED_IN_TIMESTAMP_COOKIE_NAME','loggedintime');
 
 define('BOOKS_FILE_PATH','./books.txt');
 
-define('BOOK_FILE_LINE_ELEMENTS_DELIMITER','/ +/s');
-const BOOK_FILE_ELEMENTS_DELIMITER = array('by','published','born');
+define('BOOK_FILE_LINE_ELEMENTS_DELIMITER',' ');
+define('BOOK_FILE_LINE_ELEMENTS_REGEX','/'.BOOK_FILE_LINE_ELEMENTS_DELIMITER.'+/s');
+const BOOK_ELEMENTS_DELIMITER = array('by','published','born');
 
 define('BOOK_FILE_MISSING_DATE_ERROR_FILE','./missing_year.txt');
 define('BOOK_FILE_PUBLISHED_DATE_BEFORE_BIRTH_DATE_ERROR_FILE','./published_before_born.txt');
@@ -35,21 +36,25 @@ define('LOGOUT_LINK','./logout.php');
 $booksContents = array();
 $specialBooks = array();
 
+//Check if user is logged in, if not redirect to index.php
 if( !isset($_COOKIE[LOGGED_IN_COOKIE_NAME]) || !isset($_COOKIE[LOGGED_IN_TIMESTAMP_COOKIE_NAME]) ){
 	header('Location: ./index.php');
 } else {
 	foreach( file(BOOKS_FILE_PATH,FILE_IGNORE_NEW_LINES) as $line) {
-		$bookFileElements = preg_split(BOOK_FILE_LINE_ELEMENTS_DELIMITER,$line);
+		//Break book up into parts
+		$bookFileElements = preg_split(BOOK_FILE_LINE_ELEMENTS_REGEX,$line);
     $tempBook = [];
 
-		foreach(BOOK_FILE_ELEMENTS_DELIMITER as $delimiter)	{
+		//Parse through book parts for delimiters and throw parts into the appropriate
+		//array index
+		foreach(BOOK_ELEMENTS_DELIMITER as $delimiter)	{
 			$count = 0;
 			$element = '';
 			do {
 				$nextWord = array_shift($bookFileElements);	
 				if($nextWord == $delimiter)
 					break;
-				$element .= $nextWord . ' ';
+				$element .= $nextWord . BOOK_FILE_LINE_ELEMENTS_DELIMITER;
 				$count += 1;
 			} while($count < 100 && !empty($bookFileElements));
 			$tempBook[] = trim($element);
@@ -123,8 +128,8 @@ if(count($booksWrittenBefore1950) == 1) {
 	ECHO "1 book was published before 1950 (" . $booksWrittenBefore1950[0] . ")";
 } else {
 	ECHO count($booksWrittenBefore1950) . " books were published before 1950 ("; 
+	  $size = count($booksWrittenBefore1950) - 1;
 		foreach($booksWrittenBefore1950 as $key => $bookTitle) {
-			$size = count($booksWrittenBefore1950) - 1;
 			if($key != $size)
 				ECHO $bookTitle . ', ';
 			else

@@ -3,7 +3,8 @@
 /**
 	* Assignment 1
 	*
-	* This file handles user authentication and acts as a welcome screen
+	* This file removes all cookies tracking users login and timestamp and reroute
+	* to index.php
 	*
 	* @author Vincent Lum
 	* @date 2016-11-06

@@ -35,7 +35,7 @@ define('LOGOUT_LINK','./logout.php');
 
 function getPost($String) {
 	if(isset($_POST[$String])){
-		return trim($_POST[$String]); //should use htmlentities to recode html tags but that would defeat the < > check =/
+		return trim($_POST[$String]); //Return the trimmed input if it's set 
 	} else {
 		return NULL;
 	}
